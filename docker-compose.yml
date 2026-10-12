@@ -1,0 +1,20 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      network: host
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 198.18.0.0/24
